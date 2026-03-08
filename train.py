@@ -7,6 +7,9 @@ import os
 # Load dataset
 data = pd.read_csv("data/housing.csv")
 
+# Fill missing values
+data = data.fillna(data.mean(numeric_only=True))
+
 # Convert categorical column to numeric
 data = pd.get_dummies(data)
 
@@ -14,7 +17,7 @@ data = pd.get_dummies(data)
 X = data.drop("median_house_value", axis=1)
 y = data["median_house_value"]
 
-# Split data
+# Split dataset
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 
 # Train model
