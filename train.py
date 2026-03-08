@@ -4,17 +4,25 @@ from sklearn.linear_model import LinearRegression
 import joblib
 import os
 
+# Load dataset
 data = pd.read_csv("data/housing.csv")
 
+# Convert categorical column to numeric
+data = pd.get_dummies(data)
+
+# Separate features and target
 X = data.drop("median_house_value", axis=1)
 y = data["median_house_value"]
 
-X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.2)
+# Split data
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 
+# Train model
 model = LinearRegression()
-model.fit(X_train,y_train)
+model.fit(X_train, y_train)
 
+# Save model
 os.makedirs("models", exist_ok=True)
-joblib.dump(model,"models/model.pkl")
+joblib.dump(model, "models/model.pkl")
 
-print("Training completed")
+print("Training completed successfully")
