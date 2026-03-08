@@ -16,7 +16,7 @@ jobs:
     - name: Clone dataset repo
       run: |
         git clone https://huggingface.co/datasets/akhilesh-1306/2022bcd34-mlops-dataset dataset_repo
-        mkdir data
+        mkdir -p data
         cp dataset_repo/housing.csv data/
 
     - name: Setup Python
